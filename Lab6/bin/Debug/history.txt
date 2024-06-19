@@ -1,6 +1,6 @@
 Game History:
 Kết nối đến server.
-Trò chơi bắt đầu. Phạm vi số cần đoán của vòng 1: 5 - 25
-Số đã đoán: 15
-1 đã đoán 15: Chính xác!
+Trò chơi bắt đầu. Phạm vi số cần đoán của vòng 1: 11 - 31
+Số đã đoán: 21
+1 đã đoán 21: Chính xác!
 Trò chơi kết thúc. Người chiến thắng 1. Ứng dụng sẽ đóng trong vòng 10 giây nữa.

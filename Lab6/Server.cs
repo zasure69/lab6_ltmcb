@@ -13,6 +13,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Http;
 using System.Security.Policy;
+using FireSharp.Config;
+using FireSharp.Interfaces;
+using FireSharp.Response;
+using static System.Net.WebRequestMethods;
 
 namespace Lab6
 {
@@ -182,7 +186,13 @@ namespace Lab6
             Thread.Sleep(5000);
             Application.Exit();
         }
+        IFirebaseConfig config = new FirebaseConfig
+        {
+            AuthSecret = "i6kYEHNlCjQqX9GAqeZYk8bTYSJ0yU4oS788QVPe",
+            BasePath = "https://test-df66b-default-rtdb.asia-southeast1.firebasedatabase.app/"
+        };
 
+        IFirebaseClient client;
         private async void SendGameHistoryToWebsite()
         {
             string history = "Game History:\n";
@@ -194,30 +204,25 @@ namespace Lab6
                     history += list[1].Substring(0, list[1].Length-1) + "\n";
                 }
             }));
-
-
-            using (HttpClient client = new HttpClient(new HttpClientHandler() { AllowAutoRedirect = true }))
+            client = new FireSharp.FirebaseClient(config);
+            if (client != null)
             {
+                MessageBox.Show("Connection is established!");
+            }
 
-                var values = new Dictionary<string, string>
+
+            var values = new Dictionary<string, string>
                 {
-                    { "content", history },
-                    { "token" , "03AFcWeA565epLP3MoMzPRQMbwfPe8dw3g_umh8oRP2MLSal88t_ozDBCz7QKsg_4r5WCqc9B6XVOKqwWzJHMWEryPm6QTMX6ZbUK6qrh55DTJVK5mzcfLisFb20o6Q66E0tGp5bHU5WAwSAKMvOanR47BS_9CGnbiyz2grePeTign07qRbSpYd4qmUbtrfDwEM1Dyoszkp49UsiVcx5q7QYR8dSw_us3kF9yw36jrVJQATuYZlxFsVbvei60FTV7UZt5S8xFLtRIekpeXTFls_qMJ0Q0dnaWSE2BC1R1T4Gn4GcAIdLOHyvb3SUZ7-vahbR8jkb_HvHgAJ8z9I38xcE0xPUz-qzs38NcQF1WFLgF5cfz3O1CoX73rPBrA3hUYMMnmGjTKMtlP2JkcOWjtldXl27iRNR0K_94yokI30CMQLZlWryyY2VgkDRm4HbTol-XYHqKdNDq1fYxhcsd9jZ8yDKE65WnlPQBs5geXSlVP7VK2WH5Ji7hgeoq-eteP0Fb-iKuFCg_ZyqvCquDm2cIemf69hoU-gQ721JQkrCL6BPI5tMud9TprJudBJnZoJMnfAH_XZf9ifZrMgOH28_P9HCq7WhW2_wfxJjl7zCIdpWuYs9dQ3msKyVVx2DHGocfcI7r8VNHHaVoNluTvdpR4cvPxC7NzrgFOzvL6FXSf78EOZ_bYhz7a83vGroKMcy_X28A8O3CbvCnJpG07wShK2_yYQqnpbnRUApylBhXeWw3hry-xMECLfqfr4yfAGpRXTqFbXJs5YEnPO9fB8MFttRWz-NoRD_GVbbdaRb2kh96h4TLliKNxZt_wKzqgGxfB7o5GCv-3b84bFxEsp8pj2O_L4KOF7WHiVIczBCr1P4dM99JWWXkcs3WCOGJXz5SoM5TUnPy3JWQEm8px_bUEOuSIKZ3j_eQ18HTe__hSV2XyKl2-5wHjBSCfG3YXnhVSMIvDIIabm0lOMD1klig28SWPK-uvsLqJwNlU63Rvl94cFD0K8ZNkyr1BgG7fzQT4juXxw3hxqLo0nyTNE3s4DB7G3rtqi7JSj-6PzUE1_toIrlUYmpHIUk8kPrRMoNx-vUu6eFLHhv6Q3FZeOdv68j1xnhMsGgA05jxcK8IpWAoYHXdN5z-CXPL2bLhqCM9XgCx20R1ttEwxcUPJyoIOl2B-8R_Jy-Z7GpbZTPs_FHNr-SzsjTddCdTS0PGcJbh6jOuVZtBgXSpTCvEwoSKUSbdSmNPKU-KHAz3iKEeG166vdgcJ8vfv_q9-6ZkRfLlI4aDKS7d4MFiEiBGBkFn-jPbuvHoc5BejbywdMB6F7Sx3HrIDNgjVrfCj8T1xzb2ZuU4uYmw6A52IEuSdmYsYF0THS4_O_TQdLxuyvuc8VOXCAPRWHL6BTQhCYGb5nge2B8lSPX_BjIQV4bucSzZLaMoBe973ViDLp33qbOtsYsMhqH6nbadVjOU_xXMHAD1oTn5dGmI-vUylDoJVQY6w5Vk_XG8wsu5POyZtsmzEpnasMQ1OKxftDdYkfSlqdMX9BMG20EHqBXL00MMQV_DKQwHWvddQWYcv38fqnTwR1Wqs2WXkB7amlNEcLZdhKgtWHfXpPe1YkKximWC2gLLdzONz-cTaY_vVxOo_TLL5aYaCSzJu0kRnmgF0IpWygXggbXUBDDgeyJ7dm_-HP_CgCyZ4ZkWEkg"},
-                    { "ttl", "1h" }
+                    { "history", history },
                 };
 
-                var contentToPost = new FormUrlEncodedContent(values);
+                SetResponse response = await client.SetAsync("History/",values);
+                MessageBox.Show("Data is inserted!");
 
-                HttpResponseMessage response = await client.PostAsync("https://ctxt.io/new", contentToPost);
 
-                string responseText = await response.Content.ReadAsStringAsync();
-                // Tìm URL trong phản hồi
-                MessageBox.Show(response.RequestMessage.RequestUri.ToString());
-                System.IO.File.WriteAllText("content.txt", contentToPost.Headers.ToString());
-                System.IO.File.WriteAllText("web.txt", responseText);
-                System.IO.File.WriteAllText("webhis.txt", history);
                 
-            }
+
+            
         }
 
         private string ExtractUrlFromResponse(string responseText)
