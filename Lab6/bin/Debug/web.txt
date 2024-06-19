@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Context &ndash; share whatever you see with others in seconds</title>
+        <link rel="shortcut icon" href="https://static.ctxt.io/favicon.png">
+        <style type="text/css">
+			/* Reset */
+			html, body, div, span, applet, object, iframe,
+			h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+			a, abbr, acronym, address, big, cite, code,
+			del, dfn, em, font, img, ins, kbd, q, s, samp,
+			small, strike, strong, sub, sup, tt, var,
+			b, u, i, center,
+			dl, dt, dd, ol, ul, li,
+			fieldset, form, label, legend,
+			table, caption, tbody, tfoot, thead, tr, th, td {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				outline: 0;
+				font-size: 100%;
+				vertical-align: baseline;
+			}
+            html { height: 100%; }
+			body {
+				font-family: 'Montserrat', sans-serif;
+				padding: 20px;
+				color: #777;
+                height: 100%; 
+                -webkit-font-smoothing: antialiased !important;
+                -moz-osx-font-smoothing: grayscale !important;
+                text-rendering: optimizeLegibility !important;
+			}
+			h1 { font-size: 30px; font-weight: 400;	padding-bottom: 10px; }
+			h2 { font-size: 22px; font-weight: 300; margin-top: 20px; padding-bottom: 20px; }
+            a, a:visited { text-decoration: none; color: #777; }
+            .logo { height: 20px; width: 20px; margin-right: 5px; }
+            .hidden { display: none; }
+            .editable { width: 90%; height: 70%; border: 1px solid #aaa; padding: 20px; margin-bottom: 20px; max-height: 80%; overflow-y: auto; }
+            .button { width: 200px; font-size: 16px; border: none; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; letter-spacing: .03em; color: #fff; background-color: #aaa; box-sizing:border-box; height:32px; line-height:32px; padding:0 18px; display: inline-block; margin: 0; transition: all 0.23s ease-in-out 0s; z-index: 1000; }
+            .button:hover { background-color:#777; cursor:pointer; }
+            .row { float: left; margin-right: 50px; vertical-align: middle; line-height: 32px; }
+            .spacer { height: 30px; width: 100%; display: inline-block; }
+            .footer {
+                color: #777; width: 100%; position: fixed; left: 0px; bottom: 0px; margin: 10px 0px 0px 0px; padding: 10px 10px; border-top: solid 1px #ccc; background: white;
+                font-size: 16px;
+            }
+            .footer a.link { margin-right: 10px; }
+            .footer a:hover { color: #aaa; }
+            .extension { float: right; margin-right: 20px; font-size: 16px; }
+            .examples { vertical-align: middle; }
+            .caption { font-style: italic; padding: 0px 50px; width: 35%; display: inline-block; vertical-align: middle; }
+            option, select { font-size: 16px; color: #777; }
+            input[type=checkbox] { font-size: 16px; margin: 0px 10px; display: inline-flex; }
+            p { padding-bottom: 20px; text-align: center; font-weight: 100; }
+            p.header { font-weight: 500; }
+            .contact { font-weight: 100; font-style: italic; }
+            .description { font-weight: 100; font-style: italic; line-height: 32px; }
+			.info_icon {
+				background-color: #fff;
+				border-radius: 10px 10px 10px 10px;
+				border: 1px solid #ACACAC;
+				display: inline-block;
+				font-size: .8em;
+				height: 14px;
+				width: 14px;
+				line-height: 14px;
+				margin: 2px;
+				text-align: center;
+				vertical-align: text-bottom;
+			}
+            .grecaptcha-badge { visibility: hidden };
+			.mc_embed_signup form {
+				text-align: center;
+				padding: 10px 0 10px 0;
+			}
+			.mc_embed_signup .clear {
+				display: inline-block;
+			}
+			.mc_embed_signup label {
+				display: block;
+				font-size: 16px;
+				padding-bottom: 10px;
+				font-weight: 400;
+			}
+			.mc_embed_signup input.email {
+				font-size: 15px;
+				border: 1px solid #ABB0B2;
+				-webkit-border-radius: 3px;
+				-moz-border-radius: 3px;
+				border-radius: 3px;
+				color: #343434;
+				background-color: #fff;
+				box-sizing: border-box;
+				height: 32px;
+				padding: 0px 0.4em;
+				display: inline-block;
+				margin: 0;
+				width: 350px;
+				vertical-align: top;
+			}
+			.mc_embed_signup .button {
+				font-size: 14px;
+				border: none;
+				-webkit-border-radius: 3px;
+				-moz-border-radius: 3px;
+				border-radius: 3px;
+				letter-spacing: .03em;
+				color: #fff;
+				background-color: #aaa;
+				box-sizing: border-box;
+				height: 32px;
+				line-height: 32px;
+				padding: 0 18px;
+				display: inline-block;
+				margin: 0;
+				transition: all 0.23s ease-in-out 0s;
+			}
+            @media screen and (max-width: 1020px) {
+                h1 { font-size: 2em; }
+                h2 { font-size: 2em; }
+                .editable { font-size: 1.6em; height: 40%; width: auto; }
+                .button { font-size: 1em; height: auto; width: auto; background-color: #777; padding: 10px; }
+                .row { font-size: 1.8em; padding: 20px; display: inline-block; float: none; margin: 10px; }
+                option, select { font-size: 1em; }
+                input[type=checkbox] { font-size: 1em; height: auto; width: auto; vertical-align: middle; }
+                .info_icon { font-size: .9em; height: auto; width: auto; padding: 5px; vertical-align: middle; }
+                .footer { font-size: 1.8em; line-height: 2em; padding: 10px; }
+                .extension { display: none; }
+                .mc_embed_signup label { font-size: 1.6em; height: auto; width: auto; }
+                .mc_embed_signup input.email { font-size: 2em; height: auto; width: auto; padding: 5px; margin: 10px; }
+                .mc_embed_signup .button { font-size: 1.6em; height: auto; width: auto; background-color: #777; margin: 10px; padding: 10px; }
+                .description { font-size: 1.2em; }
+                .examples { width: 100%; height: auto; }
+                .caption { width: 90%; font-size: .8em; }
+            }
+        </style>
+        <script src="https://www.google.com/recaptcha/enterprise.js?render=6Ldlf1UpAAAAAEmejONdQI-Pvuc9TgFtsnbpxmMT"></script>
+		<script type="text/javascript">
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-93094602-1', 'auto');
+			ga('send', 'pageview');
+			ga('send', 'event', 'All', 'index');
+
+            function copyContent(e) {
+                e.preventDefault();
+                grecaptcha.enterprise.ready(async () => {
+                  document.getElementById("token").value = await grecaptcha.enterprise.execute('6Ldlf1UpAAAAAEmejONdQI-Pvuc9TgFtsnbpxmMT', {action: 'new'});
+                  document.getElementById("content").value = document.getElementById("editable").innerHTML;
+                  document.getElementById("form").submit();
+                });
+                return true;
+            }
+            document.addEventListener("DOMContentLoaded", function(event) {
+                var editable = document.getElementById("editable");
+                editable.onclick = function() {
+					editable.innerHTML = "";
+                    editable.onclick = null;
+                };
+                document.getElementById("submitButton").onclick = copyContent;
+            });
+        </script>
+    </head>
+    <body>
+      <h1><a href="/"><img src="https://static.ctxt.io/favicon.png" class="logo" /></a>Context
+	  <span style="font-weight: 100">&ndash; share whatever you see with others in seconds</span>
+	  </h1>
+      <div class="editable" contenteditable="true" id="editable">
+          <span style="color: #aaa; font-size: 1.2em">Simply paste your rich-text content in here or scroll down to learn more</span>
+      </div>
+      <form action="/new" method="post" enctype="multipart/form-data" id="form">
+        <div><textarea id="content" name="content" class="hidden"></textarea><input type="hidden" value="" name="token" id="token" /></div>
+        <div class="row"><input id="submitButton" type="submit" class="button" value="Create Context"></div>
+        <div class="row">Expire in
+            <select name="ttl" class="select">
+                <option value="5m">5 min</option>
+                <option value="30m">30 min</option>
+                <option value="1h" selected>1 hour</option>
+                <option value="8h">8 hours</option>
+                <option value="1d">1 day</option>
+                <option value="30d">30 days ($)</option>
+            </select>
+        </div>
+        <div class="row">
+            <label for="locked"><input type="checkbox" id="locked" name="locked" value="1">&#128274; Origin IP access only</label>
+			<a href="/faq"><span class="info_icon">?</span></a>
+        </div>
+      </form>
+        <div class="row">
+            <span class="contact">Contact us at <a href="https://twitter.com/ctxt_io">@ctxt_io</a> or email <a href="mailto:feedback@ctxt.io">feedback@ctxt.io</a>.</span>
+        </div>
+        <br /><br /><br /><br /><br />
+		<div class="mc_embed_signup">
+		<form action="//ctxt.us15.list-manage.com/subscribe/post?u=2990c92b10fb9ccfa343d0743&amp;id=054411c43d" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+			<div class="mc_embed_signup_scroll">
+			<label for="mce-EMAIL">Keep me updated</label>
+			<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+			<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2990c92b10fb9ccfa343d0743_054411c43d" tabindex="-1" value=""></div>
+			<input type="hidden" value="" name="USOURCE" class="" id="mce-USOURCE">
+			<input type="hidden" value="" name="UMEDIUM" class="" id="mce-UMEDIUM">
+			<input type="hidden" value="" name="UCAMPAIGN" class="" id="mce-UCAMPAIGN">
+			<input type="hidden" value="" name="UCONTENT" class="" id="mce-UCONTENT">
+			<input type="hidden" value="" name="UTERM" class="" id="mce-UTERM">
+			<div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+			</div>
+		</form>
+		</div>
+        <br /><br />
+        <h2>Examples and use cases</h2>
+        <span class="description">This is a rich-text supported pastebin, which hasn't been easily found elsewhere. This works instantly in
+            seconds without needing an account and prioritizes just giving you a link to share. <br /> In particular, it can do
+            the following:</span>
+        <br />
+        <br />
+        <div class="row">
+            <img class="examples" src="https://static.ctxt.io/context-news.png" width="640" height="458" />
+            <div class="caption">
+                <p class="header">Quickly share contextual snippets of what you're reading online with friends or your audience.</p>
+                <p>Just select paragraphs of text and images on any website and paste them into the text field above.</p>
+            </div>
+        </div>
+        <div class="row">
+            <img class="examples" src="https://static.ctxt.io/context-twitter.png" width="640" height="458" />
+            <div class="caption">
+                <p class="header">Let others quickly understand what kind of user experience or personalized ranking you see.</p>
+                <p>Use our browser extension to quickly share the page load you just saw, without worrying about whether things change on a
+                second load and without having to give away your password.</p>
+            </div>
+        </div>
+        <div class="row">
+            <img class="examples" src="https://static.ctxt.io/context-code.png" width="640" height="458" />
+            <div class="caption">
+                <p class="header">Typing up a solution to a pesky bug and want others to quickly review what you wrote?</p>
+                <p>Just copy code snippets right out of your favorite editor or the Terminal directly and preserve syntax highlighting and fonts.</p>
+            </div>
+        </div>
+        <div class="row">
+            <img class="examples" src="https://static.ctxt.io/context-interview.png" width="640" height="458" />
+            <div class="caption">
+                <p class="header">Have interview feedback to share with your loop as a hiring manager during debriefs?</p>
+                <p>Use the browser extension on your ATS or just Select All, Copy, Paste and restrict access to the office IP &mdash;
+                save trees and the hassle of secure clean-up within minutes.</p>
+            </div>
+        </div>
+		<div class="spacer"></div>
+        <br /><br />
+		<div class="mc_embed_signup">
+		<form action="//ctxt.us15.list-manage.com/subscribe/post?u=2990c92b10fb9ccfa343d0743&amp;id=054411c43d" method="post" id="mc-embedded-subscribe-form2" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+			<div class="mc_embed_signup_scroll">
+			<label for="mce-EMAIL2">Subscribe for updates</label>
+			<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL2" placeholder="email address" required>
+			<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2990c92b10fb9ccfa343d0743_054411c43d" tabindex="-1" value=""></div>
+			<input type="hidden" value="" name="USOURCE" class="" id="mce-USOURCE2">
+			<input type="hidden" value="" name="UMEDIUM" class="" id="mce-UMEDIUM2">
+			<input type="hidden" value="" name="UCAMPAIGN" class="" id="mce-UCAMPAIGN2">
+			<input type="hidden" value="" name="UCONTENT" class="" id="mce-UCONTENT2">
+			<input type="hidden" value="" name="UTERM" class="" id="mce-UTERM2">
+			<div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe2" class="button"></div>
+			</div>
+		</form>
+		</div>
+        <br /><br />
+      <div class="spacer"></div>
+      <div class="footer">
+          &copy; <script type="text/javascript">document.write(new Date().getFullYear());</script>
+          <a class="link">Context (ctxt.io)</a>
+          <a class="link" href="/faq">FAQ</a>
+          <a class="link" href="/tos">Terms of Service</a>
+          <a class="link" href="/privacy">Privacy Policy</a>
+          <span class="extension">
+    For best accuracy and least effort, use our
+    <a href="https://chrome.google.com/webstore/detail/context-ctxtio/hlfidjnfgbdcpajldipflflmmenfnimc">
+        <div style="background-image: url(https://static.ctxt.io/chrome.svg); background-size: auto 100%; background-position: 0px 2px; width: 23px; height: 25px; overflow: hidden; display: inline-flex; margin-top: -20px; vertical-align: bottom; margin-left: 5px;">
+        </div>
+        Chrome extension
+    </a>
+    or
+    <a href="https://addons.mozilla.org/en-US/firefox/addon/context-ctxt-io/">
+        <div style="background-image: url(https://static.ctxt.io/firefox.svg); background-size: auto 100%; background-position: 0px 1px; width: 23px; height: 23px; overflow: hidden; display: inline-flex; margin-top: -20px; vertical-align: bottom; margin-left: 3px;">
+        </div>
+        Firefox add-on.
+    </a>
+</span>
+
+       </div>
+    </body>
+</html>
