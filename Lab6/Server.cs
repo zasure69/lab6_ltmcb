@@ -68,7 +68,8 @@ namespace Lab6
                 AppendPlayer(numberOfPlayers.ToString());
                 NetworkStream stream = client.GetStream();
                 byte[] buffer = new byte[256];
-                stream.BeginRead(buffer, 0, buffer.Length, ReceiveData, new Tuple<TcpClient, byte[]>(client, buffer));
+                stream.BeginRead(buffer, 0, buffer.Length, ReceiveData, 
+                    new Tuple<TcpClient, byte[]>(client, buffer));
             }
             
         }
@@ -172,7 +173,8 @@ namespace Lab6
                     }
                 }
             }
-            BroadcastMessage("Trò chơi kết thúc. Người chiến thắng " +  winner + ". Ứng dụng sẽ đóng trong vòng 10 giây nữa.");
+            BroadcastMessage("Trò chơi kết thúc. Người chiến thắng " +  winner +
+                ". Ứng dụng sẽ đóng trong vòng 5 giây nữa.");
             AppendMessage("Trò chơi kết thúc. Người chiến thắng " + winner);
 
             SendGameHistoryToWebsite();
@@ -207,22 +209,18 @@ namespace Lab6
             client = new FireSharp.FirebaseClient(config);
             if (client != null)
             {
-                MessageBox.Show("Connection is established!");
+                //MessageBox.Show("Connection is established!");
             }
 
 
             var values = new Dictionary<string, string>
-                {
-                    { "history", history },
-                };
+            {
+                { "history", history },
+            };
 
                 SetResponse response = await client.SetAsync("History/",values);
-                MessageBox.Show("Data is inserted!");
+                MessageBox.Show("Lịch sử chơi đã được ghi lên database");
 
-
-                
-
-            
         }
 
         private string ExtractUrlFromResponse(string responseText)
@@ -337,7 +335,7 @@ namespace Lab6
                 MessageBox.Show("Vui lòng điền số vòng chơi.");
                 return;
             }
-            else if (int.Parse(tbRound.Text) < 0)
+            else if (int.Parse(tbRound.Text) < 5)
             {
                 MessageBox.Show("Số vòng chơi tối thiểu là 5.");
                 return;
@@ -349,7 +347,15 @@ namespace Lab6
             }
             numberToGuess = new Random().Next(1, 101); // Random số từ 1-100
             textBox1.Text = "1";
-            tbA.Text = (numberToGuess - 10).ToString();
+            if (numberToGuess - 10 < 0) 
+            {
+                tbA.Text = "0";
+            }
+            else
+            {
+                tbA.Text = (numberToGuess - 10).ToString();
+            }
+            
             tbB.Text = (numberToGuess + 10).ToString();
             tbX.Text = numberToGuess.ToString();
             

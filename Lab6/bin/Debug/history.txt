@@ -1,6 +1,49 @@
+
+=================Người chơi: b=================
+
 Game History:
 Kết nối đến server.
-Trò chơi bắt đầu. Phạm vi số cần đoán của vòng 1: 11 - 31
-Số đã đoán: 21
-1 đã đoán 21: Chính xác!
-Trò chơi kết thúc. Người chiến thắng 1. Ứng dụng sẽ đóng trong vòng 10 giây nữa.
+Trò chơi bắt đầu. Phạm vi số cần đoán của vòng 1: 40 - 60
+a đã đoán 40: Số đoán thấp hơn số cần tìm!
+Số đã đoán: 40
+b đã đoán 40: Số đoán thấp hơn số cần tìm!
+a đã đoán 51: Số đoán cao hơn số cần tìm!
+a đã đoán 50: Chính xác!
+Vòng 2 bắt đầu. Phạm vi số cần đoán 9 - 29
+a đã đoán 19: Chính xác!
+Vòng 3 bắt đầu. Phạm vi số cần đoán 86 - 106
+a đã đoán 96: Chính xác!
+Vòng 4 bắt đầu. Phạm vi số cần đoán 9 - 29
+a đã đoán 19: Chính xác!
+Vòng 5 bắt đầu. Phạm vi số cần đoán 3 - 23
+a đã đoán 13: Chính xác!
+Trò chơi kết thúc. Người chiến thắng a. Ứng dụng sẽ đóng trong vòng 5 giây nữa.
+
+
+=================Người chơi: a=================
+
+Game History:
+Kết nối đến server.
+Trò chơi bắt đầu. Phạm vi số cần đoán của vòng 1: 40 - 60
+Số đã đoán: 40
+a đã đoán 40: Số đoán thấp hơn số cần tìm!
+b đã đoán 40: Số đoán thấp hơn số cần tìm!
+Số đã đoán: 51
+a đã đoán 51: Số đoán cao hơn số cần tìm!
+Vui lòng đợi 1 giây để tiếp tục trả lời.
+Số đã đoán: 50
+a đã đoán 50: Chính xác!
+Vòng 2 bắt đầu. Phạm vi số cần đoán 9 - 29
+Số đã đoán: 19
+a đã đoán 19: Chính xác!
+Vòng 3 bắt đầu. Phạm vi số cần đoán 86 - 106
+Số đã đoán: 96
+a đã đoán 96: Chính xác!
+Vòng 4 bắt đầu. Phạm vi số cần đoán 9 - 29
+Số đã đoán: 19
+a đã đoán 19: Chính xác!
+Vòng 5 bắt đầu. Phạm vi số cần đoán 3 - 23
+Số đã đoán: 13
+a đã đoán 13: Chính xác!
+Trò chơi kết thúc. Người chiến thắng a. Ứng dụng sẽ đóng trong vòng 5 giây nữa.
+
