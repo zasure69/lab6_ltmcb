@@ -167,7 +167,7 @@
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(125, 41);
             this.btnStart.TabIndex = 14;
-            this.btnStart.Text = "Run Server";
+            this.btnStart.Text = "Chạy Server";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
@@ -195,7 +195,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(125, 41);
             this.button1.TabIndex = 16;
-            this.button1.Text = "Start";
+            this.button1.Text = "Bắt đầu";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 

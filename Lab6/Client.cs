@@ -63,11 +63,13 @@ namespace Lab6
                 while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
                 {
                     string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                    if (message.Contains("Chính xác!") && message.Contains(tbName.Text))
+                    string name = tbName.Text;
+                    if (message.Contains("Chính xác!") && message.Contains(name + " "))
                     {
                         AppendPoint(10);
                     }
-                    else if (message.Contains(tbName.Text))
+                    else if (message.Contains(name + " ") && 
+                        (message.Contains("Số đoán cao hơn số cần tìm!") || message.Contains("Số đoán thấp hơn số cần tìm!")))
                     {
                         AppendPoint(-10);
                     }
@@ -75,7 +77,10 @@ namespace Lab6
                     {
                         historyGuess.Clear();
                         countdownTimer.Stop();
-                        lblCountdown.Text = "0 giây";
+                        this.Invoke(new Action(() =>
+                        {
+                            lblCountdown.Text = "0 giây";
+                        }));
                         countdown = 0;
                         var list = message.Split(' ');
                         a = list[list.Length - 3];
@@ -201,6 +206,7 @@ namespace Lab6
                 {
                     string playerName = tbName.Text;
                     int rand = new Random().Next(int.Parse(a), int.Parse(b) + 1);
+                    //Loại bỏ đoán trùng với các lần đã đoán
                     while (historyGuess.Contains(rand.ToString()))
                     {
                         rand = new Random().Next(int.Parse(a), int.Parse(b) + 1);
@@ -236,7 +242,14 @@ namespace Lab6
             {
                 history += rtbSVnoti.Text;
             }));
-            System.IO.File.WriteAllText("history.txt", history);
+            string filePath = "history.txt";
+
+            using (StreamWriter writer = new StreamWriter(filePath, append: true))
+            {
+                writer.WriteLine("\n=================Người chơi: " + tbName.Text + "=================\n");
+                writer.WriteLine(history);
+
+            }
         }
 
         private void Client_FormClosing(object sender, FormClosingEventArgs e)
